@@ -1,12 +1,13 @@
-import react from 'react'
+import React from 'react'
+import {connect} from 'react-redux'
 
-class UserList extends Component {
+class UserList extends React.Component {
     render() {
         return (
             <div>
                 <ul className="col-md-4">
                     {
-                        this.props.user.map((user)=> {
+                        this.props.myUsers.map((user)=> {
                             return (
                                 <li className="list-group-item" key={user.id}>
                                     {user.name}
@@ -20,4 +21,9 @@ class UserList extends Component {
     }
 }
 
-export default UserList
+function mapStateToProps(state) {
+    return {
+        myUsers: state.users
+    }
+}
+export default connect(mapStateToProps)(UserList)
